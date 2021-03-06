@@ -12,10 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    margin: theme.spacing(1.4)
+    margin: theme.spacing(1.4),
   },
-  title:{
-      textAlign:'center',
+  title: {
+    textAlign: "center",
   },
   btn: {
     width: "100%",
@@ -24,16 +24,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface ItemProps {
-  title: String;
+export interface ItemProps {
+  key: number;
+  item: {
+    title: string;
+    id: number;
+  };
+  remove: (id: number) => void;
 }
 
-const Item: FunctionComponent<ItemProps> = ({ title }) => {
+const Item: FunctionComponent<ItemProps> = ({ item, remove }) => {
   const classes = useStyles();
+
+  const handleDeleteItem = (id: number) => {
+    remove(id);
+  };
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={title} className={classes.title}/>
+      <CardHeader title={item.title} className={classes.title} />
       <CardContent>
         <Typography>
           Diam sed ipsum invidunt lorem voluptua. Aliquyam magna aliquyam diam
@@ -41,7 +50,12 @@ const Item: FunctionComponent<ItemProps> = ({ title }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color="secondary" className={classes.btn} variant="contained">
+        <Button
+          color="secondary"
+          className={classes.btn}
+          variant="contained"
+          onClick={() => handleDeleteItem(item.id)}
+        >
           Delete
         </Button>
       </CardActions>
