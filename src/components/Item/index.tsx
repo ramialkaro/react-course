@@ -12,6 +12,10 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    margin: theme.spacing(1.4)
+  },
+  title:{
+      textAlign:'center',
   },
   btn: {
     width: "100%",
@@ -29,7 +33,7 @@ const Item: FunctionComponent<ItemProps> = ({ title }) => {
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={title} />
+      <CardHeader title={title} className={classes.title}/>
       <CardContent>
         <Typography>
           Diam sed ipsum invidunt lorem voluptua. Aliquyam magna aliquyam diam
@@ -37,7 +41,7 @@ const Item: FunctionComponent<ItemProps> = ({ title }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color="secondary" className={classes.btn}>
+        <Button color="secondary" className={classes.btn} variant="contained">
           Delete
         </Button>
       </CardActions>
