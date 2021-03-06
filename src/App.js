@@ -1,8 +1,9 @@
 import React from "react";
 import Login from "./components/Login";
+import Items from "./components/Items";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -15,11 +16,14 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <Grid className={classes.root}>
-      <Grid container justify="center" alignItems="center">
-        <Login />
-      </Grid>{" "}
-    </Grid>
+    <>
+      <Router>
+        <Switch>
+            <Route exact path="/"  component={Login}/>
+            <Route path="/items"  component={Items}/>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
